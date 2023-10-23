@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show/Hide Div</title>
+</head>
+<style>
+    /* task3 */
+.english_word{
+    
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 20px;
+    width: 280px;
+}
+.image{
+    width: 250px;
+
+}
+.true_answer{
+    border: 1px solid green;
+    border-radius: 5px;
+box-shadow: 2px 2px 4px green;
+}
+.false-answer{
+border: 1px solid red;
+border-radius:  5px;
+box-shadow: 2px 2px 4px red;
+}
+.btn{
+    border: 1px solid black;
+    border-radius: 5px;
+    color: rgb(54, 51, 51);
+    background-color: orange;
+}
+</style>
+<body>
+<div id="app">
+    <!-- на кнопку додаю обробник при кліку спрацбовує ф-я з методу -->
+     <button class="btn" @click="showEnglishWord">Study words</button>
+    <!--  -->
+    <div v-if="englishWordVisible" class="english_word">
+        <img src="./img/il_1588xN.4724284693_lkhw.webp"  class="image">
+            
+           <label>
+                Tiger
+                <input type="radio" name="animal" v-model="selectedWord" value="tiger">
+            </label>
+            <label>
+                Tigger
+                <input type="radio" name="animal" v-model="selectedWord" value="tigger">
+            </label>
+            <label>
+                Teiger
+                <input type="radio" name="animal" v-model="selectedWord" value="teiger">
+            </label>
+            <button @click="checkAnswer" class="btn">Confirm</button>
+    </div>
+    <span class="true_answer" v-if="trueMessage">«Добре. Молодець!»</span>
+        <span class="false-answer" v-if="falseMessage">«Невірно, спробуйте ще раз» </span>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script>
+new Vue({
+    el: '#app',
+    data: {
+        englishWordVisible: false,
+        trueMessage:false,
+        falseMessage:false,
+        selectedWord: null,
+    },
+    methods: {
+        showEnglishWord() {
+            this.englishWordVisible = true;
+            this.trueMessage = false;
+            this.falseMessage = false;
+        },
+        checkAnswer() {
+            if (this.selectedWord === 'tiger') {
+                this.trueMessage = true;
+                this.falseMessage = false;
+            } else {
+                this.trueMessage = false;
+                this.falseMessage = true;
+            }
+        },
+    }
+});
+</script>
+<style>
+
+</style>
+</body>
+</html>

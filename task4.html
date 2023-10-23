@@ -1,0 +1,89 @@
+ <!-- Вивести список як маркований список з елементами у форматі (name: salary) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+ 
+</head>
+<body>
+    <div id="task4">
+       <ul>
+            <li v-for="worker in workeslist" :key="worker.id">{{ worker.name }} : {{ worker.salary }}</li>
+        </ul>
+ 
+    </div>
+    <script>
+        const { createApp } = Vue;
+const app = createApp({
+    data() {
+        return {
+        workeslist:[
+{
+    id:'111',
+    name:'Ivanov',
+    salary: 10000,
+},
+{
+   id:'112',
+    name:'Petrov',
+    salary: 20000,
+},
+{
+   id:'113',
+    name:'Sidorov',
+    salary: 50000,
+},
+
+
+]
+        }}}).mount('#task4')
+    </script>
+</body>
+</html>
+ <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="task4">
+        <ul>
+            <li v-for="worker in workeslist" :key="worker.id">{{ worker.name  :  worker.salary }}</li>
+        </ul>
+    </div>
+    <script>
+        const { createApp } = Vue;
+        const app = createApp({
+            data() {
+                return {
+                    workeslist: [
+                        {
+                            id: '111',
+                            name: 'Ivanov',
+                            salary: 10000,
+                        },
+                        {
+                            id: '112',
+                            name: 'Petrov',
+                            salary: 20000,
+                        },
+                        {
+                            id: '113',
+                            name: 'Sidorov',
+                            salary: 50000,
+                        }
+                    ]
+                }
+            }
+        }).mount('#task4')
+    </script>
+</body>
+</html> -->

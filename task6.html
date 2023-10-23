@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<style>
+     .dish-list-container{
+       border: solid 1px rgb(55, 53, 53);
+        /* display: inline-block; */
+        display: flex;
+        width: 899px;
+         justify-content: space-between;
+     }
+    .list-container{
+        display: inline-block;
+        margin: 10px;
+        border: solid 1px rgb(55, 53, 53);
+        padding: 5px;
+        text-align: left;
+        min-width: 250px;
+       
+    }
+     .dish-container{
+        display: block;
+        justify-content: space-between;
+        padding: 10px;
+     }
+   
+    .dish{
+        display: flex;
+         justify-content: space-between;
+         margin: 8px;
+         padding: 10px;
+    border: solid 1px rgb(55, 53, 53);
+
+    }
+    button{
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+    <!-- Задача 6. Задача. На кухню поступають замовлення. 
+        Спочатку ми додаємо їх у список “Очікують на виконання”, 
+        якщо повар береться робити — замовлення переходить у список “Виконуються”,   
+        якщо замовлення виконано — переходить у список “Готові до виносу”. 
+        Якщо натиснути на “Подано” - страва зникає з таблиці
+ -->
+    <div id="task6">
+        <!-- input: -->
+        <div>
+            <div>
+                <label>
+                Hова замовлена страва: 
+                    <input type="text" v-model="dishName">
+                </label>  
+
+            </div>
+            <div>   
+            <button @click="onDishAdd":disabled="!dishName">Додати</button>
+        </div>
+        <hr>
+        <!-- dishList: -->
+        <div class="dish-list-container">
+            <div class="list-container">   
+                <h2>Очікують на виконання</h2>
+                    <div class="dish-container">
+                        <div class="dish" v-for="(dish,index) in waitingList" :key="index">
+                            <div>{{dish.name}}</div>
+                            <button @click="onCook(index)">Готувати</button>
+                        </div>
+                    </div>
+            </div>     
+            <div class="list-container">
+                <h2>Виконуються</h2>
+                    <div class="dish-container">
+                        <div class="dish" v-for="(dish, index) in processingList" :key="index">
+                            <div>{{dish.name}}</div> 
+                            <button @click="onReady(index)">Приготовлено</button>
+                        </div> 
+                    </div>
+            </div>
+                
+            <div class="list-container">
+                <h2>Готові до виносуя</h2>
+                    <div class="dish-container">
+                        <div class="dish" v-for="(dish, index) in completedList" :key="index">
+                            <div>{{dish.name}}</div> 
+                            <button @click="onGiveout(index)">Подано</button>
+                        </div> 
+                    </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        const { createApp } = Vue
+        const app = createApp({
+        data(){
+            return{
+                dishName:null,
+                
+                 waitingList: [
+                     
+
+                ],
+                processingList:[
+                     
+                ], 
+                completedList:[
+                        
+                ],
+            }
+        },
+         methods: {
+            onDishAdd(){
+                 this.waitingList.push(
+                    {
+                        name: this.dishName,
+                      
+                    }
+                 )
+                //  очистити рядок після додавання:
+                this.dishName=null
+               
+                },
+            onCook(index){
+                this.processingList.push(this.waitingList[index])
+                // при натисканні ан кнопку додаю до списку страву за індексом
+                this.waitingList.splice(index,1)
+            },
+            onReady(index){
+                this.completedList.push(this.processingList[index])
+                this.processingList.splice(index,1)
+            },
+            onGiveout(index){
+                this.completedList.splice(index,1)
+            }
+
+         },
+        }).mount('#task6')
+         
+
+
+    </script>
+    
+</body>
+</html>

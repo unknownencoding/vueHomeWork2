@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+      
+    /* Стилі для завдання 1 */
+.smile::before {
+    content: "🤯";
+    width: 500px;
+    font-size: 150px
+
+}
+
+
+.true-log {
+    border: 1px solid #007700;
+    box-shadow: 2px 2px 4px green;
+}
+
+.blue-ivan {
+    border: 1px solid #3140a2d9;
+    box-shadow: 2px 2px 4px blue;
+}
+
+.red-error {
+    border: 1px solid rgb(255, 0, 0);
+    box-shadow: 2px 2px 4px rgba(250, 77, 77, 0.529);
+}
+ 
+
+ 
+ 
+    </style>
+</head>
+<body>
+    <!-- Задача 1. Вводимо логіна і пароль. Якщо логін вірний відображаємо смайл. Якщо ні, то:
+1) якщо логін = Іван – колір повідомлення про помилку синій
+2) якщо хтось інший, то колір повідомлення червоний -->
+
+<div id="task1">
+    <div >
+        <label for="">
+            <input :class="statusInput" v-model="login" placeholder="enter: l1" @input="showSmile">
+            
+        </label>
+        <label for="">
+            <input :class="statusInput" v-model="password" placeholder="enter: p1">
+        </label>
+        <button @click="showSmile">Enter</button>
+      <div v-if="statusSmile" class="smile">
+
+</div>
+    </div>
+   
+
+ 
+    <script>
+        
+    const { createApp } = Vue
+            const correct_log="l1";
+            const correct_password="p1";
+            const ivan='ivan';
+      const app = createApp({
+        data(){
+            return{
+            login: null,
+            password: null,
+            statusSmile:false,
+            };
+        },
+
+        computed:{
+            statusInput(){
+                let statusstyle
+                if(this.login===correct_log&&this.password===correct_password) statusstyle='true-log'
+                else if(this.login==='ivan') statusstyle='blue-ivan'
+                else  statusstyle='red-error'
+               
+                return statusstyle;
+            },
+        
+        },
+        methods: {  
+    showSmile() {
+        let statusSmile = null;
+        if (this.login === correct_log) statusSmile = true;
+        else statusSmile = false;
+        this.statusSmile = statusSmile; // Зберіг результат у властивості statusSmile
+    }
+}
+    }).mount('#task1')
+   
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .business-class {
+            background-image: url('./img/Business-Class.jpg'); /* Зображення бізнес каюти */
+            background-size: cover;
+            padding: 20px;
+        width: 500px;
+        min-height: 300px;
+        }
+
+        .economy-class {
+            background-image: url('./img/an_2_salon.jpg'); /* Зображення хмарки для економ-класу */
+            background-size: cover;
+            padding: 20px;
+                    width: 500px;
+        min-height: 300px;
+        }
+
+        .options {
+            margin-top: 20px;
+            background-color: #5b7462f5;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="task2">
+    <div>
+        <label for="ticketClass">Оберіть клас квитка:</label>
+        <select v-model="selectedClass" id="ticketClass">
+            <option  value="business">Бізнес</option>
+            <option value="economy">Економ</option>
+        </select>
+    </div>
+
+    <div :class="{ 'business-class': selectedClass === 'business', 'economy-class': selectedClass === 'economy' }">
+        <!-- Відображаємо зміст для бізнес-класу -->
+        <div v-if="selectedClass === 'business'" class="options">
+            <label for="newspaper">Оберіть газету:</label>
+            <select v-model="selectedNewspaper" id="newspaper">
+                <option value="none">Не обирати</option>
+                <option value="nytimes">The New York Times</option>
+                <option value="wsj">The Wall Street Journal</option>
+            </select>
+
+            <label for="drink">Оберіть напій:</label>
+            <select v-model="selectedDrink" id="drink">
+                <option value="none">Не обирати</option>
+                <option value="cognac">Коньяк</option>
+            </select>
+
+            <div v-if="selectedDrink === 'cognac'">
+                <label for="snacks">Бажаєте закуску? </label>
+                <input type="radio" id="yes" value="yes" v-model="selectedSnacks">
+                <label for="yes">Так</label>
+                <input type="radio" id="no" value="no" v-model="selectedSnacks">
+                <label for="no">Ні</label>
+            </div>
+        </div>
+
+        <!-- Відображаємо зміст для економ-класу -->
+        <div v-if="selectedClass === 'economy'" class="options">
+            <label for="beer">Оберіть пиво:</label>
+            <select v-model="selectedBeer" id="beer">
+                <option value="none">Не обирати</option>
+                <option value="light">Світле</option>
+                <option value="dark">Темне</option>
+            </select>
+
+            <label for="chips">Оберіть чіпси:</label>
+            <select v-model="selectedChips" id="chips">
+                <option value="none">Не обирати</option>
+                <option value="regular">Звичайні</option>
+                <option value="cheese">З сиром</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<script>
+const { createApp } = Vue;
+const app = createApp({
+    data() {
+        return {
+            selectedClass: 'business',
+            selectedNewspaper: 'none',
+            selectedDrink: 'none',
+            selectedSnacks: 'no',
+            selectedBeer: 'none',
+            selectedChips: 'none',
+        };
+    },
+});
+
+app.mount('#task2');
+
+//
+</script>
+<!-- <div id="task2">
+    <div class="air_servis">
+        <label for="">Оберіть клас квитка: </label>
+        <select name="" id=" ">
+            <option value="business" v-model="selectBusines">Бізнес клас</option>
+            <option value="econom" v-model="selectEconom">Економ клас</option>
+        </select>
+ // 1) бізнес -  виводимо елементи для вибору газети та коньяку 
+    (якщо вибрано коньяк, то запропонувати закуску (так/ні)), на фоні зображення бізнес кают 
+        <select name="" id="">Бажаєте ранковий випуск газети?
+            <option value="">Так</option>
+            <option value="">НІ</option>
+        </select>
+
+       <label for="">
+        
+
+           <input type="radio" id="yes" value="yes" v-model=" ">
+                <label for="yes">Закусити лимоном</label>
+                <input type="radio" id="no" value="no" v-model=" ">
+                <label for="no">Занюхати рукавом</label>
+ 
+       </label>
+           
+       
+        Склянка коньяку
+    </div>
+ -->
+</body>
+</html>

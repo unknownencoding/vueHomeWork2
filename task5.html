@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<style>
+    .iconImg{
+           height:30px;
+        max-width: 30px;
+        border: solid 1px;
+        border-radius: 50%;
+     
+
+    }
+    .all{
+        display: flex;
+    align-items: center;
+    
+    
+    }
+    .icon{
+margin-right: 10px;
+    }
+   .iconname{
+    display: flex;
+    flex-direction: column;
+   
+
+   }
+
+  h1{
+    margin-bottom: 5px;
+  }
+
+  p {
+    margin-top: 5px;
+  
+  }
+  a{
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+</style>
+</head>
+<body>
+ <div id="task5">
+<template V-for = "sites in linkList" :key="sites.id"  >
+<div class="all">
+    <div class="icon">
+    <img :src="sites.img" alt="" class="iconImg">
+    </div>
+    <div class="iconname">
+    <h1>{{sites.siteName}}</h1>
+
+    <p>{{sites.linkText}}</p>
+    </div>
+</div> 
+<a :href="sites.link">{{sites.link}}</a>
+ 
+<p>{{sites.text}}</p>
+</template>
+
+
+ </div>
+    <script>
+        const { createApp } = Vue;
+const app = createApp({
+    data() {
+        return {
+       linkList:[
+        {
+            id:" 01",
+            img:"./img/Vue.js_Logo_2.svg.png",
+            siteName:"Vue.org",
+            linkText:"https://ua.vuejs.org",
+            link:"https://ua.vuejs.org",
+            text: "ПрогресивнийJavaScript фреймворкДоступний, продуктивний і універсальний фреймворк для створення користувацьких веб інтерфейсів.",
+         },
+         {
+            id:" 02",
+            img:"./img/MDN_Web_Docs_logo.svg.png",
+            siteName:"mozilla.or",
+            linkText:"https://developer.mozilla.org",
+            link:"https://developer.mozilla.org/",
+            text: "Resources for Developers, by Developers Documenting web technologies, including CSS, HTML, and JavaScript, since 2005.",
+
+         },
+         {
+            id:" 03",
+            img: "./img/wikipedia.png",
+            siteName:"wikipedia.org",
+            linkText:"https://en.wikipedia.org/wiki/Vue.js",
+            link:"https://en.wikipedia.org/wiki/Vue.js",
+            text: "Vue.js (commonly referred to as Vue; pronounced view[4]) is an open-source model–view–viewmodel front end JavaScript library for building user interfaces and single-page applications.[10] It was created by Evan You, and is maintained by him and the rest of the active core team members.[11]",
+         },
+         {
+            id:" 04",
+            img:"./img/js.png",
+            siteName:"javascript.plainenglish.io",
+            linkText:" https://javascript.plainenglish.io/write-a-better-deep-clone-function-in-javascript-d0e798e5f550",
+            link:" https://javascript.plainenglish.io/write-a-better-deep-clone-function-in-javascript-d0e798e5f550",
+            text: "Write a Better Deep Clone Function in JavaScript Whe your interviewers ask you this question, they actually want to examine your following knowledge.",
+         },
+
+       ]
+    
+
+            }
+        }
+        }).mount('#task5')
+    </script>
+ </body>
+</html>
